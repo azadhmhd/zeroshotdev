@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#0E1014;--text:#F4F6FB;--muted:#9AA4BF;--yellow:#FFD43B;--blue:#4FC3F7;--line:#262b36}
+@media (prefers-color-scheme: light){:root{--bg:#f7f8fb;--text:#141826;--muted:#4a5268;--line:#dfe3ec;--yellow:#a37b00;--blue:#0b6e99}}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:18px;margin:28px 0 8px}
+a{color:var(--blue)}.sub{color:var(--muted)}nav{display:flex;gap:16px;margin-bottom:32px}
+code,.box{background:rgba(127,127,127,.12);border:1px solid var(--line);border-radius:8px}
+code{padding:1px 6px;word-break:break-all}.box{padding:12px;word-break:break-all;margin:12px 0}
+button{font:inherit;padding:8px 14px;border-radius:8px;border:0;background:var(--yellow);color:#111;cursor:pointer}
+</style><title>TikTok connected · Zero Shot Dev</title><meta name="robots" content="noindex" ></head><body><main><nav><a href="../">Zero Shot Dev</a></nav>
+<h1 id="t">TikTok login finished</h1>
+<p class="sub" id="s">Copy this whole address and paste it into the dashboard: Settings → TikTok → box 2 → Connect.</p>
+<div class="box" id="u"></div>
+<button id="c" type="button">Copy address</button>
+<script>
+const u = location.href, q = new URLSearchParams(location.search);
+document.getElementById("u").textContent = u;
+if (q.get("error")) { document.getElementById("t").textContent = "TikTok login was cancelled or failed";
+  document.getElementById("s").textContent = "TikTok said: " + (q.get("error_description") || q.get("error")) + ". Start again from the dashboard."; }
+document.getElementById("c").onclick = async () => {
+  try { await navigator.clipboard.writeText(u); document.getElementById("c").textContent = "Copied ✓"; }
+  catch { getSelection().selectAllChildren(document.getElementById("u")); }
+};
+</script></main></body></html>
